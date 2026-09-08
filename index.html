@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Website profil pribadi dan portfolio">
+  <title>Profil Pribadi | Portfolio</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --dark: #070b14;
+      --primary: #7c5cff;
+      --cyan: #20d9ff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+  object-fit: cover;
+  object-position: center;
+  border: 5px solid rgba(255,255,255,.08);
+}
+
+    body {
+      background:
+        radial-gradient(circle at 15% 10%, rgba(124,92,255,.18), transparent 28%),
+        radial-gradient(circle at 85% 25%, rgba(32,217,255,.10), transparent 25%),
+        var(--dark);
+      color: #fff;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .navbar {
+      background: rgba(7, 11, 20, .85);
+      backdrop-filter: blur(15px);
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .navbar-brand span,
+    .text-gradient {
+      background: linear-gradient(90deg, var(--cyan), #a78bfa, var(--primary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 120px;
+    }
+
+    .badge-custom {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      color: #cbd5e1;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .hero p,
+    .text-muted-custom {
+      color: #a8b1c7;
+    }
+
+    .btn-primary-custom {
+      background: linear-gradient(135deg, var(--primary), #5f8cff);
+      border: none;
+      color: white;
+    }
+
+    .btn-primary-custom:hover {
+      transform: translateY(-2px);
+      color: white;
+    }
+
+    .profile-card,
+    .custom-card,
+    .skill-card,
+    .project-card {
+      background: rgba(18, 25, 42, .72);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 22px;
+      backdrop-filter: blur(12px);
+    }
+
+    .profile-card {
+      padding: 35px 25px;
+      box-shadow: 0 25px 70px rgba(0,0,0,.35);
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      font-size: 48px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #312e81, #0891b2);
+      border: 5px solid rgba(255,255,255,.08);
+    }
+
+    .stat-box {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px;
+      padding: 12px 5px;
+    }
+
+    .stat-box small {
+      color: #a8b1c7;
+    }
+
+    .section-label {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .custom-card,
+    .skill-card,
+    .project-card {
+      padding: 28px;
+      height: 100%;
+    }
+
+    .skill-card,
+    .project-card {
+      transition: .3s;
+    }
+
+    .skill-card:hover,
+    .project-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(124,92,255,.5);
+    }
+
+    .skill-icon {
+      font-size: 32px;
+    }
+
+    .project-card {
+      min-height: 280px;
+    }
+
+    .project-number {
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(255,255,255,.06);
+      color: #cbd5e1;
+      border-radius: 50px;
+      padding: 5px 10px;
+      font-size: 11px;
+      margin: 3px;
+    }
+
+    .social-link {
+      color: white;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,.1);
+      padding: 10px 16px;
+      border-radius: 12px;
+      transition: .25s;
+      display: inline-block;
+    }
+
+    .social-link:hover {
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+      color: white;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: #7f899e;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top border-bottom border-secondary border-opacity-10">
+  <div class="container">
+    <a class="navbar-brand" href="#home">PORT<span>FOLIO.</span></a>
+
+    <button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMenu">
+      <ul class="navbar-nav ms-auto gap-lg-3">
+        <li class="nav-item">
+          <a class="nav-link" href="#home">Beranda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about">Tentang</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#skills">Keahlian</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#projects">Proyek</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">Kontak</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="row align-items-center g-5">
+
+      <div class="col-lg-7">
+        <span class="badge badge-custom rounded-pill px-3 py-2 mb-4">
+          ● Terbuka untuk kesempatan baru
+        </span>
+
+        <h1 class="mb-4">
+          Halo, saya
+          <span class="text-gradient">REVANDRA DWI NUR ROHMAN</span>
+        </h1>
+
+        <p class="lead text-muted-custom mb-4">
+          Saya seorang pelajar dan calon developer yang senang membuat
+          website modern, sederhana, dan nyaman digunakan.
+        </p>
+
+        <div class="d-flex flex-wrap gap-2">
+          <a href="#projects" class="btn btn-primary-custom px-4 py-3">
+            Lihat Proyek →
+          </a>
+
+          <a href="#contact" class="btn btn-outline-light px-4 py-3">
+            Hubungi Saya
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="profile-card text-center">
+         <img 
+              src="assets/img/revandrafoto.jpeg" 
+              alt="Foto profil saya" 
+              class="avatar mb-4"
+            >
+          <h3>Revandra Dwi Nur Rohman</h3>
+          <p class="text-muted-custom">
+            Student • Web Developer • Creative
+          </p>
+
+          <div class="row g-2 mt-4">
+            <div class="col-4">
+              <div class="stat-box">
+                <strong>10+</strong>
+                <small class="d-block">Proyek</small>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="stat-box">
+                <strong>4+</strong>
+                <small class="d-block">Skill</small>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="stat-box">
+                <strong>100%</strong>
+                <small class="d-block">Belajar</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+
+    <div class="mb-5">
+      
+      <h2 class="display-5 fw-bold">Sedikit tentang saya.</h2>
+      <p class="text-muted-custom">
+        Kenali saya lebih dekat melalui informasi singkat berikut.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-lg-6">
+        <div class="custom-card">
+          <h3 class="mb-3">Profil</h3>
+          <p class="text-muted-custom">
+            Saya memiliki ketertarikan pada dunia teknologi, khususnya
+            pengembangan website. Saya suka mempelajari hal baru,
+            mencoba membuat proyek, dan terus meningkatkan kemampuan
+            melalui praktik langsung.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="custom-card">
+          <h3 class="mb-3">Informasi</h3>
+
+          <div class="d-flex justify-content-between border-bottom border-secondary border-opacity-10 py-3">
+            <span class="text-muted-custom">Nama</span>
+            <strong>Revandra Dwi Nur Rohman</strong>
+          </div>
+
+          <div class="d-flex justify-content-between border-bottom border-secondary border-opacity-10 py-3">
+            <span class="text-muted-custom">Pendidikan</span>
+            <strong>SMKN 1 JENANGAN</strong>
+          </div>
+
+          <div class="d-flex justify-content-between border-bottom border-secondary border-opacity-10 py-3">
+            <span class="text-muted-custom">Domisili</span>
+            <strong>Ponorogo</strong>
+          </div>
+
+          <div class="d-flex justify-content-between pt-3">
+            <span class="text-muted-custom">Email</span>
+            <strong>drarevan51@gmail.com</strong>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+
+    <div class="mb-5">
+      <h2 class="display-5 fw-bold">Skill yang saya pelajari.</h2>
+      <p class="text-muted-custom">
+        Beberapa teknologi yang saya gunakan untuk membuat website.
+      </p>
+    </div>
+
+    <div class="row g-3">
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="skill-card">
+          <div class="skill-icon mb-3"><i class="bi bi-filetype-html"></i></div>
+          <h4>HTML</h4>
+          <p class="text-muted-custom mb-0">
+            Membuat struktur website yang rapi.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="skill-card">
+          <div class="skill-icon mb-3"><i class="bi bi-css"></i></div>
+          <h4>CSS</h4>
+          <p class="text-muted-custom mb-0">
+            Membuat tampilan modern dan responsive.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="skill-card">
+          <div class="skill-icon mb-3"><i class="bi bi-javascript"></i></div>
+          <h4>JavaScript</h4>
+          <p class="text-muted-custom mb-0">
+            Membuat website lebih interaktif.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="skill-card">
+          <div class="skill-icon mb-3"><i class="bi bi-bootstrap"></i></div>
+          <h4>Bootstrap</h4>
+          <p class="text-muted-custom mb-0">
+            Membuat layout responsive dengan cepat.
+          </p>
+        </div>
+      </div>
+
+       <div class="col-sm-6 col-lg-3">
+        <div class="skill-card">
+          <div class="skill-icon mb-3"><i class="bi bi-filetype-sql"></i></div>
+          <h4>Mysql</h4>
+          <p class="text-muted-custom mb-0">
+           MySQL adalah database yang digunakan untuk menyimpan dan mengelola data dalam aplikasi atau website.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+
+    <div class="mb-5">
+      <h2 class="display-5 fw-bold">Beberapa karya saya.</h2>
+      <p class="text-muted-custom">
+        Contoh proyek yang dapat kamu tampilkan di portfolio.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-lg-4">
+        <div class="project-card">
+          <h3 class="mt-5">Personal Portfolio</h3>
+
+          <p class="text-muted-custom">
+            Website profil pribadi yang menampilkan informasi,
+            keahlian, dan karya.
+          </p>
+
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">Bootstrap</span>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="project-card">
+          <h3 class="mt-5">Fresh Garden</h3>
+
+          <p class="text-muted-custom">
+            Website penjualan produk segar dengan katalog dan
+            informasi produk.
+          </p>
+
+          <span class="tag">Expres.js</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">React</span>
+          <span class="tag">Vite</span>
+          <span class="tag">API</span>
+          <span class="tag">Mysql</span>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="project-card">
+       
+          <h3 class="mt-5">Sistem Keluhan</h3>
+
+          <p class="text-muted-custom">
+            Sistem sederhana untuk menerima dan mengelola
+            laporan atau keluhan.
+          </p>
+
+          <span class="tag">React</span>
+          <span class="tag">Vite</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Mysql</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container text-center">
+
+  
+
+    <h2 class="display-5 fw-bold mt-2">
+      Yuk, terhubung!
+    </h2>
+
+    <p class="text-muted-custom mx-auto my-3" style="max-width:600px;">
+      Jika ingin berdiskusi, bekerja sama, atau sekadar menyapa,
+      kamu bisa menghubungi saya melalui kontak berikut.
+    </p>
+
+    <div class="d-flex justify-content-center flex-wrap gap-2 mt-4">
+      <a href="mailto:drarevan51@gmail.com" class="social-link">
+       <i class="bi bi-envelope"></i> Email
+      </a>
+
+      <a href="https://github.com/" target="_blank" class="social-link">
+        <i class="bi bi-github"></i> GitHub
+      </a>
+
+      <a href="https://revandradwi0603.com/" target="_blank" class="social-link">
+       <i class="bi bi-instagram"></i> Instagram
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="py-4 text-center">
+  <div class="container">
+    © <span id="year"></span> Revandra Dwi Nur Rohman
+  </div>
+</footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
